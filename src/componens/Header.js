@@ -34,11 +34,6 @@ function Header() {
                 <HeaderOption Icon ={ChatIcon} title = 'Messaging'/>
                 <HeaderOption Icon ={NotificationsIcon} title = 'Notifications'/>
                 <HeaderOption avatar ={PersonIcon} title = 'me'/>
-                
-
-                
-
-
             </div>
             
         </div>
