@@ -5,15 +5,17 @@ import ImageIcon from '@material-ui/icons/Image'
 import PostOption from './PostOption'
 import { CalendarViewDay, EventNote, Subscriptions } from '@material-ui/icons'
 
-const FeedHeader = () => {
+const FeedHeader = ({onClick,input,onChange}) => {
+
+    
     return (
         <div className='feed__postContainer'>
             <div className="feed__post">
                 <CreateIcon />
 
                 <form>
-                    <input type="text"/>
-                    <button type = 'submit'>Send</button>
+                    <input value = {input} onChange = {onChange} type="text"/>
+                    <button onClick = {onClick} type = 'submit'>Send</button>
                 </form>
             </div>
 
