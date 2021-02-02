@@ -57,11 +57,6 @@ const Feed = () => {
                     photoUrl = {photoUrl}
                 />
             ))}
-
-
-
-
-            
         </div>
     )
 }
