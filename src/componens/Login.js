@@ -1,11 +1,30 @@
-import React from 'react'
+import React ,{ useState } from 'react'
+import { useDispatch } from 'react-redux'
 import '../css/Login.css'
-
+import { login } from '../features/userSlice'
+import { auth } from '../firebase'
 function Login() {
+    const [email, setEmail] = useState('')
+    const [name, setName] = useState('')
+    const [password, setPassword] = useState('')
+    const dispatch = useDispatch()
     const logIn = () =>{
 
     }
     const signUp = () =>{
+        if (!name){
+            return alert("Please Enter a full name!")
+        }
+
+        auth.createUserWithEmailAndPassword(email, password).then((userAuth) =>{
+            dispatch(login({
+                email : userAuth.user.email,
+                uid : userAuth.user.uid,
+                displayName : userAuth.user.name,
+            }))
+
+           
+        }).catch((error) => alert(error))
 
     }
     return (
@@ -14,9 +33,24 @@ function Login() {
 
             <div className="login__card">
                 <form>
-                    <input type="text" placeholder = "Full name"/>
-                    <input type="email" placeholder = "Email"/>
-                    <input type="password" placeholder = "Password"/>
+                    <input
+                        type="text" 
+                        placeholder = "Full name"
+                        value = {name}
+                        onChange = {(e)=> setName(e.target.value)}
+                    />
+                    <input
+                        type="email" 
+                        placeholder = "Email"
+                        value = {email}
+                        onChange = {(e)=> setEmail(e.target.value)}
+                     />
+                    <input
+                        type="password" 
+                        placeholder = "Password"
+                        value = {password}
+                        onChange = {(e)=> setPassword(e.target.value)}
+                    />
 
                     <button type = 'submit' onClick = {signUp}>Agree & join</button>
                 </form>
