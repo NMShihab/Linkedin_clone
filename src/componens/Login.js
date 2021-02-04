@@ -3,12 +3,16 @@ import { useDispatch } from 'react-redux'
 import '../css/Login.css'
 import { login } from '../features/userSlice'
 import { auth } from '../firebase'
+
+
 function Login() {
     const [email, setEmail] = useState('')
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
     const dispatch = useDispatch()
-    const logIn = () =>{
+
+    const logIn = (e) =>{
+        e.preventDefault();
 
     }
     const signUp = () =>{
@@ -16,14 +20,21 @@ function Login() {
             return alert("Please Enter a full name!")
         }
 
-        auth.createUserWithEmailAndPassword(email, password).then((userAuth) =>{
-            dispatch(login({
-                email : userAuth.user.email,
-                uid : userAuth.user.uid,
-                displayName : userAuth.user.name,
-            }))
+        auth.createUserWithEmailAndPassword(email, password)
+            .then((userAuth) =>{
+                console.log(userAuth.user)
+                userAuth.user.updateProfile({
+                    displayName : name,
+                })
+                .then(() =>{
+                    dispatch(login({
+                        email : userAuth.user.email,
+                        uid : userAuth.user.uid,
+                        displayName : name,
+                    }))
 
-           
+                })
+                           
         }).catch((error) => alert(error))
 
     }
