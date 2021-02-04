@@ -13,6 +13,16 @@ function Login() {
 
     const logIn = (e) =>{
         e.preventDefault();
+        auth.signInWithEmailAndPassword(email,password).then(userAuth =>{
+            dispatch(login({
+                email : userAuth.user.email,
+                uid : userAuth.user.uid,
+                displayName : userAuth.user.displayName,
+
+            }))
+            
+        }).catch(error => alert(error))
+
 
     }
     const signUp = () =>{
@@ -34,7 +44,7 @@ function Login() {
                     }))
 
                 })
-                           
+
         }).catch((error) => alert(error))
 
     }
@@ -63,11 +73,11 @@ function Login() {
                         onChange = {(e)=> setPassword(e.target.value)}
                     />
 
-                    <button type = 'submit' onClick = {signUp}>Agree & join</button>
+                    <button type = 'submit' onClick = {logIn}>Sign In</button>
                 </form>
 
-                <p>Already on Linkedin? <span className = 'login__join' onClick = {logIn}>
-                                        Sign in</span></p>
+                <p>Already on Linkedin? <span className = 'login__join' onClick = {signUp}>
+                                        Register here</span></p>
 
             </div>
             
