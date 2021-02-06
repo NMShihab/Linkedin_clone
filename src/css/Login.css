@@ -42,7 +42,7 @@
 .login__card > form > button {
     border : none;
     height : 50px;
-    border-radius: 30px;
+    border-radius: 4px;
     color : white;
     background-color : #0A66C2;
     cursor: pointer;

@@ -7,6 +7,7 @@ import Sidebar from './componens/Sidebar';
 import { login, logout, selectUser } from './features/userSlice';
 import Login from './componens/Login';
 import { auth } from './firebase';
+import RightBar from './componens/RightBar';
 
 function App() {
   const user =  useSelector(selectUser);
@@ -47,6 +48,10 @@ function App() {
          
         {/* Feed */}
         <Feed />
+
+        {/* Widgets */}
+        <RightBar />
+
 
       </div>
 
